@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TrueCallerApp</string>
+    <string name="load_data">Load Data</string>
+    <string name="Every_tenth_Character">Every 10th Character</string>
+    <string name="word_count">Word Count</string>
+    <string name="tenth_Character">10th Character</string>
+    <string name="network_connection_error">No Internet, try again later</string>
+</resources>
