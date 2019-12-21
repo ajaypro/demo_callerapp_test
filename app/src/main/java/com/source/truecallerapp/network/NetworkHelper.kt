@@ -10,9 +10,8 @@ import android.os.Build
 class NetworkHelper(private val context: Context) {
 
 
-
     fun isNetworkConnected(): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager = context!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         var result = false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager.run {
