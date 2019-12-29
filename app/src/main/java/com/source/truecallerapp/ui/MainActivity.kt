@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
             viewModel = ViewModelProviders.of(this, MainViewModelFactory()).get(MainViewModel::class.java)
 
-            viewModel.tenthChar.observe(this, Observer {
+            /*viewModel.tenthChar.observe(this, Observer {
                 it?.let { char_data_view.text = it }
             })
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
             viewModel.wordsCount.observe(this, Observer {
                 it?.let { wordcount_data_view.text = it }
-            })
+            })*/
         }
 
     }

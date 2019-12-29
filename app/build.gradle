@@ -29,9 +29,11 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://truecaller.blog/2018/01/22/life-as-an-android-engineer/\"")
         }
     }
-}
 
-check.dependsOn ktlint
+    dataBinding {
+        enabled = true
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
