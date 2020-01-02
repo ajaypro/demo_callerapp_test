@@ -2,12 +2,12 @@ package com.source.truecallerapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.source.truecallerapp.R
+import com.source.truecallerapp.databinding.ActivityMainBinding
 import com.source.truecallerapp.network.NetworkHelper
-import com.source.truecallerapp.utils.Constants.TITLE
-import com.source.truecallerapp.utils.Display.showSnack
+import com.source.truecallerapp.showSnack
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,35 +21,26 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = TITLE
+
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         networkHelper = NetworkHelper(this)
 
         if (networkHelper.isNetworkConnected()) {
-            loadData()
+            load_data.setOnClickListener {
+
+                viewModel = ViewModelProviders.of(this, MainViewModelFactory())
+                    .get(MainViewModel::class.java)
+
+                // binding viewmodel and assigning lifecycleowner for observing livedata
+                binding.apply {
+                    mainViewModel = viewModel
+                    lifecycleOwner = this@MainActivity  
+                }
+            }
         } else {
             showSnack(main, R.string.network_connection_error)
         }
-    }
-
-    private fun loadData() {
-
-        load_data.setOnClickListener {
-
-            viewModel = ViewModelProviders.of(this, MainViewModelFactory()).get(MainViewModel::class.java)
-
-            /*viewModel.tenthChar.observe(this, Observer {
-                it?.let { char_data_view.text = it }
-            })
-
-            viewModel.everyTenthChar.observe(this, Observer {
-                it?.let { everytenthchar_data_view.text = it }
-            })
-
-            viewModel.wordsCount.observe(this, Observer {
-                it?.let { wordcount_data_view.text = it }
-            })*/
-        }
-
     }
 }

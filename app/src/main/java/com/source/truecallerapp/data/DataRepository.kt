@@ -1,13 +1,15 @@
 package com.source.truecallerapp.data
 
-import com.source.truecallerapp.utils.Constants.OK
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.Reader
 import java.util.*
 
-class DataRepository(private val dataSource :DataSource) {
+class DataRepository(private val dataSource: DataSource) {
 
+    companion object {
+        const val OK = 200
+    }
 
     private lateinit var result: Result
 
@@ -33,7 +35,6 @@ class DataRepository(private val dataSource :DataSource) {
             else -> {
                 result = Result.NetworkError.castToNetworkError(response.code())
             }
-
         }
         return result
     }
@@ -121,11 +122,4 @@ class DataRepository(private val dataSource :DataSource) {
         }
         return result
     }
-
-
 }
-
-
-
-
-

@@ -28,6 +28,5 @@ object Networking {
 
             .build()
             .create(NetworkService::class.java)
-
     }
 }
