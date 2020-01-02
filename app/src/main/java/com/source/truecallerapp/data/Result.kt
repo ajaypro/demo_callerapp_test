@@ -21,5 +21,4 @@ sealed class Result {
                 else -> UnExpectedError(code)
             }
     }
-
 }

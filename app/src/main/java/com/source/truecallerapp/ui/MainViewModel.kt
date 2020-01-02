@@ -10,40 +10,32 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainViewModel(private val dataRepository: DataRepository): ViewModel() {
-
+class MainViewModel(private val dataRepository: DataRepository) : ViewModel() {
 
     private val tenthCharData: MutableLiveData<String> = MutableLiveData()
     private val everyTenthCharData: MutableLiveData<String> = MutableLiveData()
     private val everyWordCountData: MutableLiveData<String> = MutableLiveData()
 
-    private fun tenthChar(): MutableLiveData<String> {
+    val tenthChar: LiveData<String> = tenthCharData
+    val everyTenthChar: LiveData<String> = everyTenthCharData
+    val wordsCount: LiveData<String> = everyWordCountData
+
+    init {
         viewModelScope.launch {
-            when (val result =  //async(Dispatchers.IO) { dataRepository.fetchTenthCharacter() }.await())
+            when (val result =
                 withContext(Dispatchers.IO) { dataRepository.fetchTenthCharacter() }) {
                 is Result.Success -> {
                     tenthCharData.value = result.data
                 }
             }
-        }
-        return tenthCharData
-    }
 
-
-    private fun everyTenthChar(): MutableLiveData<String> {
-        viewModelScope.launch {
             when (val result =
                 withContext(Dispatchers.IO) { dataRepository.fetchEveryTenthcharacter() }) {
                 is Result.Success -> {
                     everyTenthCharData.value = result.data
                 }
             }
-        }
-        return everyTenthCharData
-    }
 
-    private fun everyWordCount(): MutableLiveData<String> {
-        viewModelScope.launch {
             when (val result =
                 withContext(Dispatchers.IO) { dataRepository.fetchWordCount() }) {
                 is Result.Success -> {
@@ -51,15 +43,5 @@ class MainViewModel(private val dataRepository: DataRepository): ViewModel() {
                 }
             }
         }
-        return everyWordCountData
     }
-
-    val tenthChar: LiveData<String> = tenthChar()
-
-    val everyTenthChar: LiveData<String> = everyTenthChar()
-
-    val wordsCount: LiveData<String> = everyWordCount()
-
-
 }
-

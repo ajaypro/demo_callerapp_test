@@ -9,7 +9,6 @@ import android.os.Build
 @Suppress("DEPRECATION")
 class NetworkHelper(private val context: Context) {
 
-
     fun isNetworkConnected(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         var result = false

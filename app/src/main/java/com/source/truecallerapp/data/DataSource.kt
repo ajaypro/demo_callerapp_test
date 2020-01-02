@@ -10,5 +10,4 @@ class DataSource {
     suspend fun fetchData(): Response<ResponseBody> {
         return Networking.create(BuildConfig.BASE_URL).doDataCall()
     }
-
 }

@@ -24,6 +24,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            app:title="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -68,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/char_textView"
-        />
+        tools:text="10th Character" />
 
     <TextView
             android:id="@+id/every_tenth_char_view"
@@ -99,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:text="@{mainViewModel.everyTenthChar}"
-                 />
+                tools:text="Every 10th Character" />
 
         </ScrollView>
 
@@ -136,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:text="@{mainViewModel.wordsCount}"
-                 />
+                tools:text="Words Counter" />
 
         </ScrollView>
 
